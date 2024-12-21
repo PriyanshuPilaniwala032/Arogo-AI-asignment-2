@@ -3,3 +3,4 @@ transformers==4.44.2
 torch
 Pillow
 Werkzeug
+torch
