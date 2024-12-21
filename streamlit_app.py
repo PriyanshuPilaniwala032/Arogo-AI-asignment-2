@@ -1,11 +1,25 @@
 import streamlit as st
 from transformers import VisionEncoderDecoderModel, ViTImageProcessor, AutoTokenizer
 from PIL import Image
-import os
 
-model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
-processor = ViTImageProcessor.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
-tokenizer = AutoTokenizer.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+@st.cache_resource
+def load_model():
+    model = VisionEncoderDecoderModel.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+    return model
+
+@st.cache_resource
+def load_processor():
+    processor = ViTImageProcessor.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+    return processor
+
+@st.cache_resource
+def load_tokenizer():
+    tokenizer = AutoTokenizer.from_pretrained("nlpconnect/vit-gpt2-image-captioning")
+    return tokenizer
+
+model = load_model()
+processor = load_processor()
+tokenizer = load_tokenizer()
 
 def generate_caption(image):
     try:
@@ -19,7 +33,8 @@ def generate_caption(image):
 st.title("Image Caption Generator")
 
 st.write(
-    "Upload an image, and the model will generate a caption based on the image content.")   
+    "Upload an image, and the model will generate a caption based on the image content."
+)
 
 image_file = st.file_uploader("Choose an image...", type=["png", "jpg", "jpeg"])
 
@@ -37,4 +52,3 @@ if image_file is not None:
 
 if __name__ == '__main__':
     st.write("App is running...")
-
