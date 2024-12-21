@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.container {
+    margin-top: 50px;
+}
+.preview {
+    max-width: 400px;
+    margin: 20px auto;
+}
+#imagePreview {
+    max-width: 100%;
+    display: none;
+}
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+.error {
+    color: red;
+    margin-top: 10px;
+    display: none;
+}
